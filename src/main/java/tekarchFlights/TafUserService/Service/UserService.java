@@ -30,19 +30,11 @@ public class UserService {
         }
     }
 
-  /*  public ResponseEntity<UserResponse> registerUser(UserRequest userRequest) {
-        String url = DATASTORE_BASE_URL;
-        // Send POST request to TafDatastoreService
-        ResponseEntity<UserResponse> response = restTemplate.postForEntity(url, userRequest, UserResponse.class);
-        return response;
-    }
 
-   */
     public ResponseEntity<UserResponse> getUserById(Long userId) {
         String url = DATASTORE_BASE_URL + "/" + userId;
         // Send GET request to TafDatastoreService
-        ResponseEntity<UserResponse> response = restTemplate.getForEntity(url, UserResponse.class);
-        return response;
+        return restTemplate.getForEntity(url, UserResponse.class);
     }
 
     public ResponseEntity<String> updateUser(Long userId, UserRequest userRequest) {

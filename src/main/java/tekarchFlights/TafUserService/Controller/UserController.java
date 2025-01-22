@@ -30,8 +30,12 @@ public class UserController {
     public ResponseEntity<?> registerUser(@Valid @RequestBody UserRequest userRequest) {
         try {
             // Call the service layer to register the user
-            ResponseEntity<UserResponse> response = (ResponseEntity<UserResponse>) userService.registerUser(userRequest);
-            return response; // Forward the successful response
+            ResponseEntity<?> userResponse = userService.registerUser(userRequest);
+            return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
+
+            // Call the service layer to register the user
+          //  ResponseEntity<UserResponse> response = (ResponseEntity<UserResponse>) userService.registerUser(userRequest);
+            //return response; // Forward the successful response
         } catch (HttpClientErrorException.Conflict e) {
             // Handle 409 Conflict (username already taken) error gracefully
             return ResponseEntity.status(HttpStatus.CONFLICT)
