@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Copy the JAR file from the target/build/libs folder into the container
 # Replace "my-app.jar" with the name of your JAR file
-COPY build/libs/my-user-service.jar.jar app.jar
+COPY build/libs/my-user-service.jar app.jar
 
 # Expose the port your Spring Boot application is running on (default is 8080)
 EXPOSE 8082
