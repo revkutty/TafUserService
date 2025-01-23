@@ -1,6 +1,7 @@
 package tekarchFlights.TafUserService.Service;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
 import tekarchFlights.TafUserService.DTO.UserRequest;
@@ -17,7 +18,11 @@ public class UserService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String DATASTORE_BASE_URL = "http://localhost:8081/api/users";
+    @Value("${datasource.service.url}")
+    private String DATASTORE_BASE_URL;
+
+
+   // private static final String DATASTORE_BASE_URL = "http://localhost:8081/api/users";
 
     public ResponseEntity<?> registerUser(UserRequest userRequest) {
         try {
