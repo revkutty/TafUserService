@@ -11,7 +11,9 @@ import tekarchFlights.TafUserService.DTO.UserRequest;
 import tekarchFlights.TafUserService.DTO.UserResponse;
 import tekarchFlights.TafUserService.Service.UserService;
 
+import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -54,6 +56,13 @@ public class UserController {
     @PutMapping("/{userId}")
     public ResponseEntity<String> updateUser(@PathVariable Long userId, @Valid @RequestBody UserRequest userRequest) {
         return userService.updateUser(userId, userRequest);
+    }
+
+
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        List<UserResponse> flights = userService.getAllUsers();
+        return ResponseEntity.ok(flights);
     }
 }
 

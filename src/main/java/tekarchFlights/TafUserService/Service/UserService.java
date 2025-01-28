@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import tekarchFlights.TafUserService.DTO.UserResponse;
 
+import java.util.Arrays;
+import java.util.List;
+
 
 @Service
 public class UserService {
@@ -35,6 +38,11 @@ public class UserService {
         }
     }
 
+    public List<UserResponse> getAllUsers() {
+        UserResponse[] userArray = restTemplate.getForObject(DATASTORE_BASE_URL, UserResponse[].class);
+        assert userArray != null;
+        return Arrays.asList(userArray);
+    }
 
     public ResponseEntity<UserResponse> getUserById(Long userId) {
         String url = DATASTORE_BASE_URL + "/" + userId;
